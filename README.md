@@ -5,7 +5,11 @@ A practical approach to understand Machine Learning algorithms and build own mod
 
 Models:
 LinearRegression
-KNN 
+KNN
   K Mean
   SVM
-Kernels
+  SVM using Kernels
+Hierarchial Clustring
+  Default Mean Sift Models
+  Build own Mean Shift Model - With Default Radius
+  Build own Mean Shift Model - With Dynamic Radius
