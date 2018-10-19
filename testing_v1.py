@@ -5,16 +5,18 @@ from sklearn.cluster import KMeans
 import pickle
 #import timeit
 data = pd.read_csv("C:/Users/mmishra/Downloads/Code/R_n_D/Data/SampleData.csv")
-df = pd.DataFrame(data,columns=['Type','Message Status','Severity','Sent','Policy','Matches','Subject','Sender','Recipients','Status','Has Attachment','Contract Type','Department','Country'])
-
-print(df.head())
+#df = pd.DataFrame(data,columns=['Type','Message Status','Severity','Sent','Policy','Matches','Subject','Sender','Recipients','Status','Has Attachment','Contract Type','Department','Country'])
+df = pd.DataFrame(data,columns=['Message Status','Status','Subject','Has Attachment','Contract Type','Department Code','VIP','Country'])
+print(df)
 
 #df.convert_objects(convert_numeric=True)
 #print(df)
 df.fillna(0,inplace=True)
 print(df)
 
-from sklearn.feature_extraction import CountVectorizer
+#from sklearn.feature_extraction import CountVectorizer
+
+
 
 def handle_non_numerical_data(df):
     columns = df.columns.values
@@ -38,15 +40,23 @@ def handle_non_numerical_data(df):
     return df
 
 df = handle_non_numerical_data(df)
-print(df.head())
+print(df)
 
-X = np.array(df.drop(['Status'], 1).astype(float))
+X = np.array(df.drop(['Status'] )).astype(float)
 X = preprocessing.scale(X)
 y = np.array(df['Status'])
 
-#print(timeit.timeit())
-clf = KMeans(n_clusters=2)
+
+clf = KMeans(n_clusters=3)
 clf.fit(X)
+clf.predict(X)
+labels = clf.labels_
+print(labels)
+#Plotting
+
+#print(timeit.timeit())
+#clf = KMeans(n_clusters=2)
+#clf.fit(X)
 #print(timeit.timeit())
 # Saving model in file
 model_file = 'KMeans_Model.pkl'
