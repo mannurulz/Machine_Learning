@@ -47,7 +47,7 @@ X = preprocessing.scale(X)
 y = np.array(df['Status'])
 
 
-clf = KMeans(n_clusters=3)
+clf = KMeans(n_clusters=2)
 clf.fit(X)
 clf.predict(X)
 labels = clf.labels_
@@ -78,7 +78,7 @@ for i in range(len(X)):
         correct += 1
 
 print(correct/len(X))
-
+ 
 
 
 #import matplotlib.pyplot as plt
