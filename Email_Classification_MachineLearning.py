@@ -24,3 +24,14 @@ from sklearn.ensemble import RandomForestClassifier
 import itertools
 from sklearn.metrics import confusion_matrix
 
+data = pd.read_excel("C:/Users/mmishra/Desktop/SampleData.xlsx")
+df = pd.DataFrame(data, columns=['Policy','matches','Status','Subject','has attachment','VIP','department code'])
+df.fillna(0, inplace=True)
+
+columns = df.columns.values
+
+#Source data analysis
+
+fig = plt.figure(figsize=(8,6))
+df.groupby('Status').Status.count().plot.bar(ylim=0)
+plt.show()
