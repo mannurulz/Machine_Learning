@@ -75,7 +75,7 @@ for i in range(len(X)):
     prediction = loaded_model.predict(predict_me)
     print(prediction)
     if prediction[0] == y[i]:
-        correct += 1
+        correct += 1   
 
 print(correct/len(X))
  
