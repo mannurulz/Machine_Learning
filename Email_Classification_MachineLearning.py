@@ -169,3 +169,7 @@ Tdf.fillna(0, inplace=True)
 Tdf = handle_non_numerical_data(Tdf)
 TX = np.array(Tdf.drop(['Status'],1).astype(float))
 print(TX)
+
+
+my_model = pickle.load(open(model_file,'rb'))
+my_model.predict(TX)
