@@ -3,7 +3,7 @@ Developed by Manmohan Mishra.
 
 1. Read data from XLSX File
 2. Plot data based on status (target) column for analysis
-    a. Data is not balanced - then upsample/resample for minority class to avoid biased model training
+    a.  Data is not balanced - then upsample/resample for minority class to avoid biased model training
 3. Clean Data
 4. Preprocessing & Split for Training & Test
 5. Initiate Model, Fit (train)
@@ -25,7 +25,6 @@ from sklearn.ensemble import RandomForestClassifier
 import itertools
 from sklearn.metrics import confusion_matrix
 from pandas.tests.groupby.test_function import test_size
-from dataclasses import replace
 from sklearn.cluster.tests.test_k_means import n_samples
 
 data = pd.read_excel("C:/Users/mmishra/Desktop/SampleData.xlsx")
@@ -76,7 +75,7 @@ def handle_non_numerical_data(df):
 
     return df
 
-df = handle_non_numerical_data(df)
+df = handle_non_numerical_data(df_balanced)
 
 
 # Create Target
@@ -146,3 +145,27 @@ plot_confusion_matrix(cnf_matrix, classes=class_names, normalize=True,
                       title='Normalized confusion matrix')
 
 plt.show()
+
+
+'''
+Model Export in file for direct usage
+'''
+
+import pickle
+
+model_file = 'RFC.pickle'
+pickle.dump(RFC, open(model_file,'wb'))
+
+
+'''
+Using model from file direct on new test data
+Note: Model is not trained or tested using this data. This will be new prediction.
+'''
+
+TData = pd.read_excel("My_Prod_Test_File")
+Tdf = pd.DataFrame(TData, columns=['Policy','matches','Status','Subject','has attachment','VIP','department code'])
+Tdf.fillna(0, inplace=True)
+
+Tdf = handle_non_numerical_data(Tdf)
+TX = np.array(Tdf.drop(['Status'],1).astype(float))
+print(TX)
