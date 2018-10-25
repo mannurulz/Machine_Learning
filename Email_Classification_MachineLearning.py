@@ -3,6 +3,7 @@ Developed by Manmohan Mishra.
 
 1. Read data from XLSX File
 2. Plot data based on status (target) column for analysis
+    a. Data is not balanced - then upsample/resample for minority class to avoid biased model training
 3. Clean Data
 4. Preprocessing & Split for Training & Test
 5. Initiate Model, Fit (train)
@@ -24,6 +25,8 @@ from sklearn.ensemble import RandomForestClassifier
 import itertools
 from sklearn.metrics import confusion_matrix
 from pandas.tests.groupby.test_function import test_size
+from dataclasses import replace
+from sklearn.cluster.tests.test_k_means import n_samples
 
 data = pd.read_excel("C:/Users/mmishra/Desktop/SampleData.xlsx")
 df = pd.DataFrame(data, columns=['Policy','matches','Status','Subject','has attachment','VIP','department code'])
@@ -36,6 +39,19 @@ columns = df.columns.values
 fig = plt.figure(figsize=(8,6))
 df.groupby('Status').Status.count().plot.bar(ylim=0)
 plt.show()
+
+
+#Re-Sampling the data as classed are not balanced
+from sklearn.utils import resample
+
+df_esc = df[df.Status == 'Escalated']
+df_dis = df[df.Status == 'Dismissed']
+
+# Escalated class belong to minority, as the number of alerts escalated are less.
+# n_samples should be equal to majority class - this is to have proper balance data
+df_esc_enh = resample(df_esc, replace=True, n_samples=60000, random_state=123)
+
+df_balanced = pd.concat([df_dis, df_esc_enh])
 
 
 # Preprocessing
