@@ -170,6 +170,6 @@ Tdf = handle_non_numerical_data(Tdf)
 TX = np.array(Tdf.drop(['Status'],1).astype(float))
 print(TX)
 
-
+# Model will be loaded from the file for prediction
 my_model = pickle.load(open(model_file,'rb'))
 my_model.predict(TX)
