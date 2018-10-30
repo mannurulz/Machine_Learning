@@ -6,7 +6,7 @@ Developed by Manmohan Mishra.
     a.  Data is not balanced - then upsample/resample for minority class to avoid biased model training
 3. Clean Data
 4. Preprocessing & Split for Training & Test
-5. Initiate Model, Fit (train)
+5. Initiate Model, Fit (train, target)
 6. Predict with test data
 7. Accuracy Validation & Testing
 8. Plot Confusion Matrix
