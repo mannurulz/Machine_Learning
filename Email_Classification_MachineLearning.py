@@ -53,7 +53,7 @@ df_esc_enh = resample(df_esc, replace=True, n_samples=60000, random_state=123)
 df_balanced = pd.concat([df_dis, df_esc_enh])
 
 
-# Preprocessing
+# Preprocessing (Conversion of Non-Numeric data to Numeric
 def handle_non_numerical_data(df):
     columns = df.columns.values
 
@@ -95,6 +95,7 @@ print(RFC.feature_importances_)
 Yp = RFC.predict(x_te)
 RFC.score(x_te, y_te)
 
+# Building & Plotting confusion matrix
 def plot_confusion_matrix(cm, classes,
                           normalize=False,
                           title='Confusion matrix',
