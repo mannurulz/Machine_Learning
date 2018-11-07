@@ -12,6 +12,7 @@ Developed by Manmohan Mishra.
 8. Plot Confusion Matrix
 9. Export ML Model to file
 10. Use ML Model to predict with actual data
+11. Check for ML Model - Learning Curve
 
 '''
 
@@ -173,3 +174,8 @@ print(TX)
 # Model will be loaded from the file for prediction
 my_model = pickle.load(open(model_file,'rb'))
 my_model.predict(TX)
+
+
+# Check ML Model - Learning Curve
+
+from sklearn.model_selection import learning_curve
