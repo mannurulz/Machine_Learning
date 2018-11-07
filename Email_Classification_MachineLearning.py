@@ -54,7 +54,7 @@ df_esc_enh = resample(df_esc, replace=True, n_samples=60000, random_state=123)
 df_balanced = pd.concat([df_dis, df_esc_enh])
 
 
-# Preprocessing (Conversion of Non-Numeric data to Numeric
+# Preprocessing
 def handle_non_numerical_data(df):
     columns = df.columns.values
 
@@ -96,7 +96,6 @@ print(RFC.feature_importances_)
 Yp = RFC.predict(x_te)
 RFC.score(x_te, y_te)
 
-# Building & Plotting confusion matrix
 def plot_confusion_matrix(cm, classes,
                           normalize=False,
                           title='Confusion matrix',
@@ -180,3 +179,12 @@ my_model.predict(TX)
 # Check ML Model - Learning Curve
 
 from sklearn.model_selection import learning_curve
+def plot_learning_curve(estimator, title, X, Y, ylim=None, cv=None, n_jobs=None, train_size=np.linspace(.1,1.0,5)):
+    plt.figure()
+    plt.title(title)
+    if ylim is not None:
+        plt.ylim(*ylim)
+    plt.xlabel("Training Samples")
+    plt.ylabel("Äccuracy / Score")
+    train_sizes, train_scores, test_scores = learning_curve(estimator, X, Y, cv=cv, n_jobs=n_jobs, train_sizes=train_sizes)
+    
