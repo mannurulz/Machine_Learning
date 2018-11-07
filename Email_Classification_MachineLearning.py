@@ -187,11 +187,17 @@ def plot_learning_curve(estimator, title, X, Y, ylim=None, cv=None, n_jobs=None,
     plt.xlabel("Training Samples")
     plt.ylabel("Äccuracy / Score")
     train_sizes, train_scores, test_scores = learning_curve(estimator, X, Y, cv=cv, n_jobs=n_jobs, train_sizes=train_sizes)
-    train_score_mean = np.mean(train_scores, axis=1)
-    train_score_std = np.std(train_scores, axis=1)
+    train_scores_mean = np.mean(train_scores, axis=1)
+    train_scores_std = np.std(train_scores, axis=1)
     test_scores_mean = np.mean(test_scores, axis=1)
-    test_score_std = np.std(test_scores, axis=1)
+    test_scores_std = np.std(test_scores, axis=1)
     plt.grid()
 
-    
+    plt.fill_between(train_sizes, train_scores_mean - train_scores_std, train_scores_mean + train_scores_std, alpha=0.1, color ="r")
+    plt.fill_between(train_sizes, test_scores_mean - test_scores_std, test_scores_mean + test_scores_std, alpha=0.1, color="g")
+    plt.plot(train_sizes, train_scores_mean, 'o-', color="r", label="Training Score")
+    plt.plot(train_sizes, test_scores_mean, 'o-', color="g", label="Cross Validation Score")
+    plt.legend(loc='best')
+    return plt
+
     
