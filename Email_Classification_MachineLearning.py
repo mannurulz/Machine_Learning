@@ -179,6 +179,8 @@ my_model.predict(TX)
 # Check ML Model - Learning Curve
 
 from sklearn.model_selection import learning_curve
+from sklearn.model_selection import ShuffleSplit
+from sklearn.model_selection import Su
 def plot_learning_curve(estimator, title, X, Y, ylim=None, cv=None, n_jobs=None, train_size=np.linspace(.1,1.0,5)):
     plt.figure()
     plt.title(title)
@@ -200,4 +202,8 @@ def plot_learning_curve(estimator, title, X, Y, ylim=None, cv=None, n_jobs=None,
     plt.legend(loc='best')
     return plt
 
-    
+title = "Learning Curve - RFC Model"
+cv = ShuffleSplit(n_splits=10, test_size=0.2, random_state=0)
+estimator = RandomForestClassifier()
+plot_learning_curve(estimator, title, X, Y, (0.7, 1.01), cv=cv, n_jobs=4)
+plt.show()
