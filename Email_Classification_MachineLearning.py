@@ -29,7 +29,7 @@ from pandas.tests.groupby.test_function import test_size
 from sklearn.cluster.tests.test_k_means import n_samples
 
 data = pd.read_excel("C:/Users/mmishra/Desktop/SampleData.xlsx")
-df = pd.DataFrame(data, columns=['Policy','matches','Status','Subject','has attachment','VIP','department code'])
+df = pd.DataFrame(data, columns=['Col1','Col2','Status','Col3','Col4','Col5','Col6'])
 df.fillna(0, inplace=True)
 
 columns = df.columns.values
@@ -148,23 +148,20 @@ plot_confusion_matrix(cnf_matrix, classes=class_names, normalize=True,
 plt.show()
 
 
-'''
-Model Export in file for direct usage
-'''
+
+# Model Export in file, can be posted in UAT or PROD for use.
 
 import pickle
-
 model_file = 'RFC.pickle'
 pickle.dump(RFC, open(model_file,'wb'))
 
 
-'''
-Using model from file direct on new test data
-Note: Model is not trained or tested using this data. This will be new prediction.
-'''
+
+# Import model from file and perform prediction.
+# Note: Model has not been trained or tested using below data. This will be a new prediction.
 
 TData = pd.read_excel("My_Prod_Test_File")
-Tdf = pd.DataFrame(TData, columns=['Policy','matches','Status','Subject','has attachment','VIP','department code'])
+Tdf = pd.DataFrame(TData, columns=['Col1','Col2','Status','Col3','Col4','Col5','Col6'])
 Tdf.fillna(0, inplace=True)
 
 Tdf = handle_non_numerical_data(Tdf)
