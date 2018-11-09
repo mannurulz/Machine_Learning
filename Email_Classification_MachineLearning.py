@@ -14,6 +14,11 @@ Developed by Manmohan Mishra.
 10. Use ML Model to predict with actual data
 11. Check for ML Model - Learning Curve
 
+
+Additional
+
+1. Fitting Logestic Regression & Logestic Regression CV
+2. Plot learning curve for LR & LR-CV
 '''
 
 import pandas as pd
