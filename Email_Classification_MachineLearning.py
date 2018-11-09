@@ -230,6 +230,7 @@ print(lr_cv.score(x_te, y_te))
 ## Plotting learning curve for Linear Regression  
 title = "Learning Curve - Linear Regression Model"
 cv = ShuffleSplit(n_splits=10, test_size=0.2, random_state=0)
+# Calling the model for regression with multinomial classification
 estimator = LogesticRegression(multi_class='multinomial')
 plot_learning_curve(estimator, title, X, Y, (0.4, 1.01), cv=cv, n_jobs=4)
 plt.show()
@@ -238,6 +239,7 @@ plt.show()
 ## Plotting learning curve for Linear Regression  
 title = "Learning Curve - Linear Regression Model"
 cv = ShuffleSplit(n_splits=10, test_size=0.2, random_state=0)
+# Suffling the data and equally splitting for ploting the graph
 estimator = LogesticRegressionCV(cv=5, multi_class='multinomial')
 plot_learning_curve(estimator, title, X, Y, (0.4, 1.01), cv=cv, n_jobs=4)
 plt.show()
