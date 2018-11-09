@@ -216,8 +216,23 @@ lr.fit(x_tr, y_tr)
 lr_yp = lr.predict(x_te)
 print(lr.score(x_te, y_te))
 
-
+## Extending code for Logestic Regression CV
 lr_cv = LogesticRegressionCV(cv=5, multi_class='multinomial')
 lr_cv.fit(x_tr, y_tr)
 lr_yp = lr_cv.predict(x_te)
 print(lr_cv.score(x_te, y_te))
+
+## Plotting learning curve for Linear Regression  
+title = "Learning Curve - Linear Regression Model"
+cv = ShuffleSplit(n_splits=10, test_size=0.2, random_state=0)
+estimator = LogesticRegression(multi_class='multinomial')
+plot_learning_curve(estimator, title, X, Y, (0.4, 1.01), cv=cv, n_jobs=4)
+plt.show()
+
+
+## Plotting learning curve for Linear Regression  
+title = "Learning Curve - Linear Regression Model"
+cv = ShuffleSplit(n_splits=10, test_size=0.2, random_state=0)
+estimator = LogesticRegressionCV(cv=5, multi_class='multinomial')
+plot_learning_curve(estimator, title, X, Y, (0.4, 1.01), cv=cv, n_jobs=4)
+plt.show()
