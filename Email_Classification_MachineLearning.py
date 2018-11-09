@@ -204,3 +204,20 @@ cv = ShuffleSplit(n_splits=10, test_size=0.2, random_state=0)
 estimator = RandomForestClassifier()
 plot_learning_curve(estimator, title, X, Y, (0.7, 1.01), cv=cv, n_jobs=4)
 plt.show()
+
+
+## Extending code for Logestic Regression
+from sklearn.linear_model import LogesticRegression
+from sklearn.linear_model import LogesticRegressionCV
+
+lr = LogesticRegression(solver='lbfgs')
+lr_cv = LogesticRegressionCV(cv=5, multi_class='multinomial')
+lr.fit(x_tr, y_tr)
+lr_yp = lr.predict(x_te)
+print(lr.score(x_te, y_te))
+
+
+lr_cv = LogesticRegressionCV(cv=5, multi_class='multinomial')
+lr_cv.fit(x_tr, y_tr)
+lr_yp = lr_cv.predict(x_te)
+print(lr_cv.score(x_te, y_te))
