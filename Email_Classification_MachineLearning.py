@@ -33,7 +33,7 @@ from sklearn.metrics import confusion_matrix
 from pandas.tests.groupby.test_function import test_size
 from sklearn.cluster.tests.test_k_means import n_samples
 
-data = pd.read_excel("C:/Users/mmishra/Desktop/SampleData.xlsx")
+data = pd.read_excel("C:/Desktop/SampleData.xlsx")
 df = pd.DataFrame(data, columns=['Col1','Col2','Status','Col3','Col4','Col5','Col6'])
 df.fillna(0, inplace=True)
 
