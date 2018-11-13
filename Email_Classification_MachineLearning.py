@@ -32,9 +32,18 @@ import itertools
 from sklearn.metrics import confusion_matrix
 from pandas.tests.groupby.test_function import test_size
 from sklearn.cluster.tests.test_k_means import n_samples
+import os
 
-data = pd.read_excel("C:/Desktop/SampleData.xlsx")
-df = pd.DataFrame(data, columns=['Col1','Col2','Status','Col3','Col4','Col5','Col6'])
+
+path = r'path_of_folder'
+xl_files = os.listdir(path)
+df = pd.DataFrame()
+
+for x in xl_files:
+    data = pd.read_excel(path+x)
+    data_df = pd.DataFrame(data, columns=['Col1','Col2','Status','Col3','Col4','Col5','Col6'])
+    df = df.append(data_df, sort=True)
+
 df.fillna(0, inplace=True)
 
 columns = df.columns.values
