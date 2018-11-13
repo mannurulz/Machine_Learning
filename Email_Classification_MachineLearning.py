@@ -98,7 +98,15 @@ RFC = RandomForestClassifier()
 RFC.fit(x_tr,y_tr)
 
 print(RFC.feature_importances_)
+# Predict Target variable value based on Test Data - x_te
 Yp = RFC.predict(x_te)
+
+# Print prediction probability (from both the classes A & B) along with each prediction.
+Ypp = RFC.predict_proba(x_te)
+
+for x in range(len(x_te)):
+    print(Yp[x], Ypp[x])
+
 RFC.score(x_te, y_te)
 
 def plot_confusion_matrix(cm, classes,
