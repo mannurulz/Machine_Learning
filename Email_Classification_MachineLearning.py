@@ -155,6 +155,20 @@ def plot_confusion_matrix(cm, classes,
 
 # Compute confusion matrix
 cnf_matrix = confusion_matrix(y_test, y_pred)
+
+# Output will be in below format:
+'''
+[[TN FP]
+[ FN TP]]
+'''
+# Compute confusion matrix version 2
+cnf_matrix = confusion_matrix(y_pred, y_test)
+# Output will be in below format:
+'''
+Output:
+[[TN FN]
+[ FP TP]]
+'''
 np.set_printoptions(precision=2)
 
 # Plot non-normalized confusion matrix
