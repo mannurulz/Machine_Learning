@@ -7,6 +7,7 @@ import pickle
 import time
 import pymongo
 
+# Sample data iris
 iris = datasets.load_iris()
 X = iris.data
 y = iris.target
@@ -15,13 +16,14 @@ y = iris.target
 from sklearn.model_selection import train_test_split 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
 
-
+# Sample Model for testing
 from sklearn.naive_bayes import GaussianNB
 
 gnb = GaussianNB()
 gnb.fit(X_train, y_train)
 #print(gnb.predict(X_test))
 
+# Define function to save model in MongoDB
 def save_model_to_db(model, client, db, dbconnection, model_name):
     import pickle
     import time
