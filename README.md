@@ -1,7 +1,7 @@
 # Machine_Learning
 Machine Learning Codes
 
-A practical approach to understand Machine Learning algorithms and build own models.
+A practical approach to understand prebuild Machine Learning algorithms and build own models.
 
 Models:
 LinearRegression
